@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres:18.6
+    environment:
+      POSTGRES_USER: shop
+      POSTGRES_PASSWORD: shop
+      POSTGRES_DB: stripe_payments
+    ports:
+      # 5434 on the host so it can run next to another local Postgres.
+      - '5434:5432'
+    volumes:
+      # 18+ keeps PGDATA under /var/lib/postgresql/<major>; mount the parent.
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h 127.0.0.1 -U shop -d stripe_payments']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Stripe CLI in a container: forwards sandbox webhooks to the backend on the
+  # host, no local install and no `stripe login`. Started by `npm run
+  # stripe:listen`, which passes the key from apps/backend/.env.
+  stripe:
+    image: stripe/stripe-cli:v1.51.1
+    profiles: ['stripe']
+    environment:
+      STRIPE_API_KEY: ${STRIPE_SECRET_KEY:-}
+    command: >-
+      listen
+      --forward-to http://host.docker.internal:4001/webhooks/stripe
+      --events checkout.session.completed,checkout.session.async_payment_succeeded,checkout.session.async_payment_failed,checkout.session.expired
+
+volumes:
+  postgres_data:

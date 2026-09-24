@@ -1,0 +1,67 @@
+{
+	"name": "@stripe-payments/backend",
+	"version": "0.1.0",
+	"private": true,
+	"description": "NestJS API: products, Stripe Checkout, webhooks, order state",
+	"author": "Nikita MRCS",
+	"license": "MIT",
+	"scripts": {
+		"prebuild": "prisma generate",
+		"build": "nest build",
+		"predev": "prisma generate; lsof -ti:4001 | xargs kill -9 2>/dev/null; true",
+		"dev": "nest start --watch",
+		"start:prod": "node dist/main",
+		"db:reset": "prisma generate && prisma migrate reset --force && prisma db seed",
+		"pretest": "prisma generate",
+		"test": "jest --runInBand"
+	},
+	"dependencies": {
+		"@nestjs/common": "^11.1.0",
+		"@nestjs/config": "^4.0.4",
+		"@nestjs/core": "^11.1.0",
+		"@nestjs/platform-express": "^11.1.0",
+		"@prisma/adapter-pg": "^7.10.0",
+		"@prisma/client": "^7.10.0",
+		"@stripe-payments/contracts": "*",
+		"reflect-metadata": "^0.2.2",
+		"rxjs": "^7.8.2",
+		"stripe": "^22.6.2",
+		"zod": "^3.25.76"
+	},
+	"devDependencies": {
+		"@nestjs/cli": "^11.0.24",
+		"@nestjs/schematics": "^11.1.0",
+		"@nestjs/testing": "^11.1.0",
+		"@types/express": "^5.0.6",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^22.20.2",
+		"@types/pg": "^8.23.1",
+		"@types/supertest": "^7.2.1",
+		"dotenv": "^17.2.3",
+		"jest": "^30.5.2",
+		"pg": "^8.23.0",
+		"prisma": "^7.10.0",
+		"supertest": "^7.3.0",
+		"ts-jest": "^29.4.13"
+	},
+	"jest": {
+		"rootDir": ".",
+		"testEnvironment": "node",
+		"testMatch": [
+			"<rootDir>/test/**/*.spec.ts",
+			"<rootDir>/src/**/*.spec.ts"
+		],
+		"transform": {
+			"^.+\\.ts$": [
+				"ts-jest",
+				{
+					"tsconfig": "tsconfig.test.json"
+				}
+			]
+		},
+		"setupFiles": [
+			"<rootDir>/test/env.ts"
+		],
+		"globalSetup": "<rootDir>/test/global-setup.ts"
+	}
+}
