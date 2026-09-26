@@ -7,7 +7,9 @@ export function CatalogScreen() {
 	return (
 		<div className="flex flex-col gap-10 pb-16">
 			<section className="pt-10 sm:pt-14">
-				<h1 className="font-display text-4xl sm:text-6xl">Catalog</h1>
+				<h1 className="font-display text-4xl sm:text-6xl">
+					Small things for every day
+				</h1>
 				<p className="mt-3 max-w-xl text-muted">
 					Six products to pay for through Stripe Checkout. Test mode: no card is
 					charged.

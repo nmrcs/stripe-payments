@@ -38,7 +38,7 @@ export function App() {
 						to="/"
 						className="text-lg font-bold tracking-[0.18em] uppercase"
 					>
-						Everyday Goods
+						Store
 					</Link>
 					<Badge.Anchor>
 						<Button

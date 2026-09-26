@@ -6,7 +6,7 @@ A small shop on Stripe Checkout: a React storefront with a cart, a NestJS API an
 
 ## Quickstart
 
-Prerequisites: Node 22+, Docker and a Stripe account (the sandbox is enough, no business verification). The Stripe CLI runs in a container, nothing to install.
+Prerequisites: Node 24+, Docker and a Stripe account (the sandbox is enough, no business verification). The Stripe CLI runs in a container, nothing to install.
 
 ```sh
 # 1. PostgreSQL in Docker (host port 5434)
