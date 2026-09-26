@@ -8,7 +8,7 @@
 	"scripts": {
 		"prebuild": "prisma generate",
 		"build": "nest build",
-		"predev": "prisma generate; lsof -ti:4001 | xargs kill -9 2>/dev/null; true",
+		"predev": "prisma generate; lsof -ti:3001 | xargs kill -9 2>/dev/null; true",
 		"dev": "nest start --watch",
 		"start:prod": "node dist/main",
 		"db:reset": "prisma generate && prisma migrate reset --force && prisma db seed",

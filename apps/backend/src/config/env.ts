@@ -5,8 +5,8 @@ const envSchema = z.object({
 		.string()
 		.url()
 		.regex(/^postgres(ql)?:\/\//),
-	PORT: z.coerce.number().default(4001),
-	FRONTEND_ORIGIN: z.string().url().default('http://localhost:4000'),
+	PORT: z.coerce.number().default(3001),
+	FRONTEND_ORIGIN: z.string().url().default('http://localhost:3000'),
 	// This repository only ever talks to a Stripe sandbox.
 	STRIPE_SECRET_KEY: z.string().startsWith('sk_test_', {
 		message: 'STRIPE_SECRET_KEY must be a sandbox key (sk_test_...)',

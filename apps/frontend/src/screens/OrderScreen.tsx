@@ -54,10 +54,10 @@ export function OrderScreen() {
 
 	const status = STATUS[order.status]
 	return (
-		<Card className="mx-auto w-full max-w-lg">
+		<Card className="mx-auto my-14 w-full max-w-lg">
 			<Card.Header>
 				<div className="flex items-center justify-between gap-3">
-					<Card.Title className="text-lg font-semibold">Order</Card.Title>
+					<Card.Title className="font-display text-2xl">Order</Card.Title>
 					<Chip color={status.color} variant="soft">
 						{status.label}
 					</Chip>

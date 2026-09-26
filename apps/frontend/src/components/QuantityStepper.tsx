@@ -28,7 +28,7 @@ export function QuantityStepper({
 		>
 			<NumberField.Group>
 				<NumberField.DecrementButton />
-				<NumberField.Input className="text-center" />
+				<NumberField.Input className="tabular text-center" />
 				<NumberField.IncrementButton />
 			</NumberField.Group>
 		</NumberField>

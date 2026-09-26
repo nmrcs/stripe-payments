@@ -7,7 +7,7 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"predev": "lsof -ti:4000 | xargs kill -9 2>/dev/null; true",
+		"predev": "lsof -ti:3000 | xargs kill -9 2>/dev/null; true",
 		"dev": "vite",
 		"build": "tsc -b && vite build",
 		"preview": "vite preview"

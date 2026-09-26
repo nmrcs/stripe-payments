@@ -27,7 +27,7 @@ services:
       STRIPE_API_KEY: ${STRIPE_SECRET_KEY:-}
     command: >-
       listen
-      --forward-to http://host.docker.internal:4001/webhooks/stripe
+      --forward-to http://host.docker.internal:3001/webhooks/stripe
       --events checkout.session.completed,checkout.session.async_payment_succeeded,checkout.session.async_payment_failed,checkout.session.expired
 
 volumes:

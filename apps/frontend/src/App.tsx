@@ -8,6 +8,7 @@ import {
 	useSearchParams,
 } from 'react-router-dom'
 import { CartDrawer } from './components/CartDrawer'
+import { BagIcon } from './components/Icons'
 import { CatalogScreen } from './screens/CatalogScreen'
 import { OrderScreen } from './screens/OrderScreen'
 import { useCart } from './store/cart'
@@ -30,19 +31,23 @@ export function App() {
 	const count = useCart((s) => s.lines.reduce((n, l) => n + l.quantity, 0))
 	const setOpen = useCart((s) => s.setOpen)
 	return (
-		<div className="flex min-h-screen flex-col bg-[#050505] text-foreground">
-			<header className="border-b border-white/5">
-				<div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-					<Link to="/" className="text-lg font-semibold">
-						stripe-payments
+		<div className="flex min-h-screen flex-col">
+			<header className="sticky top-0 z-30 h-16 shrink-0 border-b border-separator bg-background">
+				<div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
+					<Link
+						to="/"
+						className="text-lg font-bold tracking-[0.18em] uppercase"
+					>
+						Everyday Goods
 					</Link>
 					<Badge.Anchor>
 						<Button
-							variant="secondary"
+							variant="ghost"
 							aria-label={count ? `Cart, ${count} items` : 'Cart'}
 							onPress={() => setOpen(true)}
 						>
-							Cart
+							<BagIcon className="size-5" />
+							<span className="hidden sm:inline">Cart</span>
 						</Button>
 						{count > 0 && (
 							<Badge color="accent" size="sm">
@@ -52,13 +57,18 @@ export function App() {
 					</Badge.Anchor>
 				</div>
 			</header>
-			<main className="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-4 py-8">
+			<main className="mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6">
 				<Routes>
 					<Route path="/" element={<CatalogScreen />} />
 					<Route path="/orders/:id" element={<OrderScreen />} />
 					<Route path="*" element={<Navigate to="/" replace />} />
 				</Routes>
 			</main>
+			<footer className="border-t border-separator">
+				<div className="mx-auto max-w-7xl px-4 py-8 text-sm text-muted sm:px-6">
+					A demo store in Stripe test mode. Nothing here is for sale.
+				</div>
+			</footer>
 			<OpenCartFromUrl />
 			<CartDrawer />
 		</div>

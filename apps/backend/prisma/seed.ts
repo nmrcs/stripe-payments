@@ -21,6 +21,24 @@ const products = [
 		description: 'Heavy cotton canvas, carries a laptop.',
 		priceCents: 2400,
 	},
+	{
+		slug: 'wool-beanie',
+		name: 'Wool Beanie',
+		description: 'Merino rib knit, one size.',
+		priceCents: 2200,
+	},
+	{
+		slug: 'steel-bottle',
+		name: 'Steel Water Bottle',
+		description: 'Double wall, keeps water cold for a day, 750 ml.',
+		priceCents: 2800,
+	},
+	{
+		slug: 'brass-pen',
+		name: 'Brass Pen',
+		description: 'Solid brass body, takes standard refills.',
+		priceCents: 3200,
+	},
 ]
 
 async function main(): Promise<void> {

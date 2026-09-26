@@ -22,7 +22,7 @@ npm run stripe:secret
 # 4. Frontend config
 cp apps/frontend/.env.example apps/frontend/.env
 
-# 5. Install, migrate + seed three products
+# 5. Install, migrate + seed six products
 npm install
 npm run db:reset
 
@@ -31,7 +31,7 @@ npm run stripe:listen
 npm run dev
 ```
 
-Open http://localhost:4000, add something to the cart and pay with the test card `4242 4242 4242 4242`, any future date, any CVC. The order page switches from pending to paid when the webhook lands.
+Open http://localhost:3000, add something to the cart and pay with the test card `4242 4242 4242 4242`, any future date, any CVC. The order page switches from pending to paid when the webhook lands.
 
 Tests need only the Docker database, not Stripe or the network:
 
@@ -67,7 +67,7 @@ API          reconcile job, every minute
 - `apps/backend/src/checkout/checkout.service.ts` prices the order from the database, never from the request, and opens the session with an idempotency key per order.
 - `apps/backend/src/webhooks/webhooks.service.ts` verifies, deduplicates and applies events.
 - `apps/backend/src/orders/order-status.ts` is the whole state machine: the moves an order may make.
-- `apps/backend/src/orders/reconcile.service.ts` asks Stripe about orders nobody told us about.
+- `apps/backend/src/orders/reconcile.service.ts` asks Stripe about orders the webhooks never reported.
 - `packages/contracts` holds the Zod schemas both apps share.
 
 ## Four places webhooks break
